@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
-import './styles/App.css';
+import { useEffect, useState } from 'react';
 import * as Colyseus from 'colyseus.js'
 
 function App() {
@@ -16,11 +14,14 @@ function App() {
       });
     });
   }, []);
+  //
 
   return (
     <>
-    <div className='bg-blue-900'>
-
+    <div className="bg-gray-400">
+        <div className="text-white text-center text-4xl">
+            {client_id}
+        </div>
     </div>
     </>
   );
