@@ -1,8 +1,16 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './styles/App.css';
+import * as Colyseus from 'colyseus.js'
 
 function App() {
+  const client = new Colyseus.Client("ws://localhost:3000");
+  
+  client.joinOrCreate("MyRoom")
+  .then(async (room) => {
+
+  });
+
   return (
     <div className="App">
       <header className="App-header">
@@ -18,6 +26,7 @@ function App() {
         >
           Learn React
         </a>
+        <span className="text-white text-4xl text-bold ">Global Checker</span>
       </header>
     </div>
   );
