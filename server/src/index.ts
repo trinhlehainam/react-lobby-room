@@ -15,8 +15,6 @@ import { monitor } from "@colyseus/monitor"
 
 import { MyRoom } from "./rooms/MyRoom"
 
-const PORT = Number(process.env.PORT || 3000);
-
 class App {
     private port: number
     private server: Server
@@ -28,8 +26,8 @@ class App {
         app.use(express.static(path.resolve(__dirname, '../../client/build')));
         app.use('/colyseus', monitor());
 
-        this.server = new Server({server: createServer(app)});
         this.port = port;
+        this.server = new Server({server: createServer(app)});
     }
 
     init(): App {
@@ -43,4 +41,5 @@ class App {
     }
 }
 
+const PORT = Number(process.env.PORT || 3000);
 new App(PORT).init().start();
