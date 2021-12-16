@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import * as Colyseus from 'colyseus.js'
+
+import { Home } from './routes/home'
+import { Start } from './routes/start'
 
 function App() {
   const [client_id, setClientId] = useState('');
@@ -17,13 +21,12 @@ function App() {
   //
 
   return (
-    <>
-    <div className="bg-gray-400">
-        <div className="text-white text-center text-4xl">
-            {client_id}
-        </div>
-    </div>
-    </>
+  <BrowserRouter>
+    <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/start" element={<Start />} />
+    </Routes>
+  </BrowserRouter>
   );
 }
 
