@@ -5,6 +5,8 @@ import * as Colyseus from 'colyseus.js'
 import { Home } from './routes/home'
 import { Start } from './routes/private'
 import { ClientContext } from './contexts/clientcontext';
+import { AvailableRooms } from './routes/availablerooms';
+import { MyRoom } from './routes/myroom';
 
 const App = () => {
   const [client, setClient] = useState<Colyseus.Client>();
@@ -21,14 +23,16 @@ const App = () => {
   }
 
   return (
+  <ClientContext.Provider  value={clientContext}>
   <BrowserRouter>
     <Routes>
-        <ClientContext.Provider  value={clientContext}>
           <Route path="/" element={<Home />} />
           <Route path="/privategame" element={<Start />} />
-        </ClientContext.Provider>
+          <Route path="/availablerooms" element={<AvailableRooms />} />
+          <Route path="/myroom" element={<MyRoom />} />
     </Routes>
   </BrowserRouter>
+  </ClientContext.Provider>
   );
 }
 
