@@ -3,28 +3,30 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import * as Colyseus from 'colyseus.js'
 
 import { Home } from './routes/home'
-import { Start } from './routes/start'
+import { Start } from './routes/private'
+import { ClientContext } from './contexts/clientcontext';
 
-function App() {
-  const [client_id, setClientId] = useState('');
+const App = () => {
+  const [client, setClient] = useState<Colyseus.Client>();
   
   // Init
   useEffect(() => {
     const client = new Colyseus.Client("ws://localhost:3000");
-    client.joinOrCreate("MyRoom")
-    .then((room) => {
-      room.onMessage("INIT_ID", (message: string) => {
-         setClientId(message);
-      });
-    });
+    setClient(client);
   }, []);
   //
+
+  const clientContext = {
+    client, setClient
+  }
 
   return (
   <BrowserRouter>
     <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/start" element={<Start />} />
+        <ClientContext.Provider  value={clientContext}>
+          <Route path="/" element={<Home />} />
+          <Route path="/privategame" element={<Start />} />
+        </ClientContext.Provider>
     </Routes>
   </BrowserRouter>
   );
