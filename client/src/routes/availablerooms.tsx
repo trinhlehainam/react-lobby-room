@@ -18,24 +18,19 @@ export const AvailableRooms = () => {
     }, []);
 
     return (
-        <div className="bg-black flex flex-col min-h-screen justify-center items-center">
-            <div className="relative bg-gray-400 flex flex-col w-1/4 my-auto space-y-4 p-4">
-                {avaiRooms.map((room) => (
-                    <div 
-                    className="bg-blue-800 text-white text-center text-4xl border-4 border-yellow-200 rounded hover:scale-125 hover:bg-blue-400"
-                    onClick={() => {
-                        client?.joinById(room.roomId);
-                    }}
-                    >
-                        <Link to="/myroom">
-                            {`RoomId: ${room.roomId} Available: ${room.clients}/${room.maxClients}`}
-                        </Link>
-                    </div>
-                ))}
-                <div className="absolute bg-red-600 right-0 top-0 border-2 border-yellow-300 hover:scale-150 hover:bg-red-300 w-10 h-10 p-4 -translate-y-6 translate-x-2 flex justify-center items-center">
-                <Link className='text-white text-center text-2xl' to="/privategame">X</Link>
-            </div>
-            </div>
-        </div>
-    );
+        <table>
+            <tr>
+                <th>Players</th>
+                <th>RoomId</th>
+                <th><span className="sr-only">Join</span></th>
+            </tr>
+            {avaiRooms.map((room) => (
+                <tr>
+                    <td>{room.roomId}</td>
+                    <td>{`${room.clients}/${room.maxClients}`}</td>
+                    <td>Join</td>
+                </tr>
+            ))}
+        </table>
+           );
 }

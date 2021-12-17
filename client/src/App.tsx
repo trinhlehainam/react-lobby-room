@@ -23,7 +23,7 @@ const App = () => {
   }
 
   return (
-  <ClientContext.Provider  value={clientContext}>
+  <ClientContext.Provider value={clientContext}>
   <BrowserRouter>
     <Routes>
           <Route path="/" element={<Home />} />
