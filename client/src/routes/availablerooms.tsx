@@ -5,15 +5,15 @@ import { RoomAvailable } from 'colyseus.js'
 import { ClientContext } from "../contexts/clientcontext";
 
 export const AvailableRooms = () => {
-    const {client} = useContext(ClientContext);
+    const { client } = useContext(ClientContext);
     const [avaiRooms, setAvaiRooms] = useState<RoomAvailable[]>([]);
 
     useEffect(() => {
         if (client) {
             client.getAvailableRooms()
-            .then((rooms) => {
-                setAvaiRooms(rooms);
-            })
+                .then((rooms) => {
+                    setAvaiRooms(rooms);
+                })
         };
     }, []);
 
@@ -32,5 +32,5 @@ export const AvailableRooms = () => {
                 </tr>
             ))}
         </table>
-           );
+    );
 }

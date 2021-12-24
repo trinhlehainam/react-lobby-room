@@ -2,15 +2,15 @@ import { useContext, useEffect, useState } from "react"
 import { ClientContext } from "../contexts/clientcontext"
 
 export const MyRoom = () => {
-    const {client} = useContext(ClientContext);
+    const { client } = useContext(ClientContext);
     const [roomId, setRoomId] = useState('');
 
     useEffect(() => {
         if (client) {
             client.create("MyRoom")
-            .then((room) => {
-                setRoomId(room.id);
-            });
+                .then((room) => {
+                    setRoomId(room.id);
+                });
         }
     }, []);
 
